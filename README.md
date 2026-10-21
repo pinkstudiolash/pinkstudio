@@ -4,8 +4,8 @@ Site estático (HTML + CSS + JavaScript puro, **sem build**) com formulário de
 agendamento que envia a mensagem pronta para o WhatsApp do Pink Studio, bloqueia
 horários já ocupados e tem um painel para a profissional controlar a agenda.
 
-- Site: https://SEU-USUARIO.github.io/pinkstudio/
-- Painel: https://SEU-USUARIO.github.io/pinkstudio/admin.html
+- Site: https://pinkstudiolash.github.io/pinkstudio/
+- Painel: https://pinkstudiolash.github.io/pinkstudio/admin.html
 
 ## O que falta preencher
 
@@ -18,8 +18,8 @@ no lugar; faltam só os dados que são do Pink Studio:
    *Ligar a agenda* mais abaixo e cole `url` e `anonKey` em `config.js`.
 3. **Avisos no celular (push)** — opcional. `vapidPublicKey` está vazio; sem
    ele o painel funciona, só não manda notificação.
-4. **Publicar** — crie o repositório `pinkstudio` no GitHub, ligue o GitHub
-   Pages no branch `main` (pasta raiz) e troque `SEU-USUARIO` nos links acima.
+4. ~~**Publicar**~~ — pronto: repositório `pinkstudiolash/pinkstudio`, GitHub
+   Pages servindo o branch `main` na pasta raiz. Todo `git push` publica.
 
 ```
 index.html      -> a página das clientes
