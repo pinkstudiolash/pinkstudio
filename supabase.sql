@@ -134,7 +134,7 @@ $$;
 revoke all on function public.eh_admin() from public;
 grant execute on function public.eh_admin() to authenticated;
 
--- A FLÁVIA (na lista de admins) enxerga e controla tudo.
+-- O PINK STUDIO (na lista de admins) enxerga e controla tudo.
 drop policy if exists "admin le tudo" on public.agendamentos;
 create policy "admin le tudo"
   on public.agendamentos for select to authenticated using (public.eh_admin());
