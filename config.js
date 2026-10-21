@@ -10,7 +10,7 @@
 window.CONFIG = {
   // Número do WhatsApp que RECEBE as mensagens.
   // Formato: 55 (Brasil) + DDD + número, só dígitos, sem espaços ou traços.
-  whatsapp: "55DDDNUMERO",
+  whatsapp: "5511927426420",
 
   // Tabela de preços de RESERVA.
   // Depois de rodar o supabase-servicos.sql, quem manda é o banco — o Pink Studio

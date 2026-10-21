@@ -12,8 +12,8 @@ horários já ocupados e tem um painel para a profissional controlar a agenda.
 Este site é a cópia do Flávia Nails adaptada para o Pink Studio. Tudo já está
 no lugar; faltam só os dados que são do Pink Studio:
 
-1. **WhatsApp** — em `config.js`, `whatsapp: "55DDDNUMERO"`. Troque pelo número
-   que recebe os pedidos: 55 + DDD + número, só dígitos.
+1. ~~**WhatsApp**~~ — pronto: `whatsapp: "5511927426420"` em `config.js`. Se um
+   dia o número mudar, é só editar ali (55 + DDD + número, só dígitos).
 2. **Banco próprio (Supabase)** — projeto novo, separado do da Flávia. Siga
    *Ligar a agenda* mais abaixo e cole `url` e `anonKey` em `config.js`.
 3. **Avisos no celular (push)** — opcional. `vapidPublicKey` está vazio; sem
