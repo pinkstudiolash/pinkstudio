@@ -14,8 +14,10 @@ no lugar; faltam só os dados que são do Pink Studio:
 
 1. ~~**WhatsApp**~~ — pronto: `whatsapp: "5511927426420"` em `config.js`. Se um
    dia o número mudar, é só editar ali (55 + DDD + número, só dígitos).
-2. **Banco próprio (Supabase)** — projeto novo, separado do da Flávia. Siga
-   *Ligar a agenda* mais abaixo e cole `url` e `anonKey` em `config.js`.
+2. ~~**Banco próprio (Supabase)**~~ — pronto: projeto `pinkstudio` (São Paulo),
+   na organização Pink Studio, com as tabelas, os 4 serviços e o expediente já
+   criados. Falta só **criar o login da profissional** e autorizar o e-mail
+   dela na tabela `admins` — veja *Ligar a agenda*, passos 5 e 6.
 3. **Avisos no celular (push)** — opcional. `vapidPublicKey` está vazio; sem
    ele o painel funciona, só não manda notificação.
 4. ~~**Publicar**~~ — pronto: repositório `pinkstudiolash/pinkstudio`, GitHub

@@ -46,8 +46,8 @@ window.CONFIG = {
   //  regras de segurança, e este arquivo é visível para quem visitar
   //  o site.
   supabase: {
-    url: "",
-    anonKey: "",
+    url: "https://tagivkqudwiwgufatyet.supabase.co",
+    anonKey: "sb_publishable_MZAzp1P36aC80sWG8UVWkg_Gg9Ufe-p",
   },
 
   // Chave pública das notificações (VAPID). Pode ficar pública — é ela que
