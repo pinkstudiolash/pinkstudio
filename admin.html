@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Agenda — Pink Studio</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+
+    <!-- Instalável como app: Android (Chrome) e iPhone (Safari) -->
+    <link rel="manifest" href="manifest-admin.json" />
+    <meta name="theme-color" content="#fdf4f2" />
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Agenda" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500;600&display=swap"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+  <body class="admin-body">
+    <header class="admin-top">
+      <button type="button" id="menu-abrir" class="hamburguer" aria-label="Abrir menu" hidden>
+        <span></span><span></span><span></span>
+      </button>
+
+      <div class="admin-brand">
+        <img src="assets/logo.jpg" alt="" width="40" height="40" />
+        <div>
+          <strong id="titulo-pagina">Agenda do Pink Studio</strong>
+          <span id="quem"></span>
+        </div>
+      </div>
+
+      <button type="button" class="sino" id="sino" hidden title="Pedidos esperando resposta">
+        <span id="sino-conta">0</span>
+      </button>
+    </header>
+
+    <!-- Menu lateral -->
+    <div class="menu-fundo" id="menu-fundo" hidden></div>
+    <nav class="menu" id="menu" aria-label="Páginas" hidden>
+      <div class="menu-cabeca">
+        <img src="assets/logo.jpg" alt="" width="52" height="52" />
+        <div>
+          <strong>Pink Studio</strong>
+          <span id="menu-quem"></span>
+        </div>
+      </div>
+
+      <ul class="menu-lista">
+        <li>
+          <button type="button" class="menu-item" data-ir="mes">
+            <span class="menu-icone" aria-hidden="true">🗓️</span>
+            <span class="menu-texto">Mês</span>
+            <span class="menu-badge" data-badge="mes" hidden></span>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="menu-item" data-ir="dia">
+            <span class="menu-icone" aria-hidden="true">📋</span>
+            <span class="menu-texto">Dia</span>
+            <span class="menu-badge" data-badge="dia" hidden></span>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="menu-item" data-ir="horarios">
+            <span class="menu-icone" aria-hidden="true">⏰</span>
+            <span class="menu-texto">Horário de atendimento</span>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="menu-item" data-ir="servicos">
+            <span class="menu-icone" aria-hidden="true">💅</span>
+            <span class="menu-texto">Serviços e preços</span>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="menu-item" data-ir="avisos">
+            <span class="menu-icone" aria-hidden="true">🔔</span>
+            <span class="menu-texto">Avisos no celular</span>
+          </button>
+        </li>
+      </ul>
+
+      <button type="button" id="sair" class="menu-sair">Sair</button>
+    </nav>
+
+    <main class="admin-main">
+      <!-- Aviso quando o Supabase ainda não foi configurado -->
+      <section id="tela-desligado" class="card admin-card" hidden>
+        <h2 class="card-title">Agenda ainda não conectada</h2>
+        <p class="admin-p">
+          O banco de dados não está configurado. Preencha <code>supabase.url</code> e
+          <code>supabase.anonKey</code> no arquivo <code>config.js</code> e publique de novo.
+        </p>
+      </section>
+
+      <!-- Login -->
+      <section id="tela-login" class="card admin-card" hidden>
+        <h2 class="card-title">Entrar</h2>
+        <form id="form-login" class="fields" style="margin-top: 1.5rem">
+          <label class="field">
+            <span class="field-label">E-mail</span>
+            <input id="email" class="input" type="email" autocomplete="username" required />
+          </label>
+          <label class="field">
+            <span class="field-label">Senha</span>
+            <input
+              id="senha"
+              class="input"
+              type="password"
+              autocomplete="current-password"
+              required
+            />
+          </label>
+          <button type="submit" class="btn-primary btn-block" id="btn-entrar">Entrar</button>
+          <p class="admin-erro" id="erro-login" hidden></p>
+        </form>
+      </section>
+
+      <!-- Agenda -->
+      <section id="tela-agenda" hidden>
+        <!-- Página: mês -->
+        <div class="pagina" data-pagina="mes" hidden>
+          <div class="card admin-card">
+            <div class="admin-card-head">
+              <h2 class="card-title" id="mes-titulo">Mês</h2>
+              <div class="admin-nav-dia">
+                <button type="button" class="btn-ghost" id="mes-anterior" aria-label="Mês anterior">
+                  ‹
+                </button>
+                <button type="button" class="btn-ghost" id="mes-hoje">Hoje</button>
+                <button type="button" class="btn-ghost" id="mes-seguinte" aria-label="Próximo mês">
+                  ›
+                </button>
+              </div>
+            </div>
+
+            <div class="cal-semana" aria-hidden="true">
+              <span>D</span><span>S</span><span>T</span><span>Q</span><span>Q</span><span>S</span
+              ><span>S</span>
+            </div>
+            <div class="cal-grade" id="cal-grade"></div>
+
+            <div class="cal-legenda">
+              <span><i class="ponto ponto-confirmado"></i> confirmado</span>
+              <span><i class="ponto ponto-pendente"></i> esperando resposta</span>
+              <span><i class="ponto ponto-fechado"></i> fechado</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Página: dia -->
+        <div class="pagina" data-pagina="dia" hidden>
+          <div class="card admin-card">
+            <div class="admin-card-head">
+              <h2 class="card-title">Dia</h2>
+              <div class="admin-nav-dia">
+                <button type="button" class="btn-ghost" id="dia-anterior" aria-label="Dia anterior">
+                  ‹
+                </button>
+                <input id="dia" class="input admin-dia" type="date" />
+                <button type="button" class="btn-ghost" id="dia-seguinte" aria-label="Próximo dia">
+                  ›
+                </button>
+              </div>
+            </div>
+            <p class="admin-p" id="resumo-dia"></p>
+            <ul class="admin-slots" id="slots"></ul>
+          </div>
+        </div>
+
+        <!-- Página: horário de atendimento -->
+        <div class="pagina" data-pagina="horarios" hidden>
+          <div class="card admin-card">
+            <h2 class="card-title">Horário de atendimento</h2>
+            <p class="admin-p">
+              O horário normal de cada dia da semana. O <strong>último horário</strong> é o mais
+              tarde que você aceita começar um atendimento — se ele passar do fim, tudo bem.
+            </p>
+            <ul class="admin-servicos" id="expediente"></ul>
+
+            <div class="admin-card-head" style="margin-top: 1.5rem">
+              <h3 class="card-title">Dias diferentes do normal</h3>
+              <button type="button" class="btn-ghost" id="excecao-nova">+ Novo dia</button>
+            </div>
+            <p class="admin-p">
+              Um feriado, ou um dia de ficar até mais tarde. O que estiver aqui vale mais que o
+              horário da semana.
+            </p>
+            <ul class="admin-servicos" id="excecoes"></ul>
+          </div>
+        </div>
+
+        <!-- Página: serviços -->
+        <div class="pagina" data-pagina="servicos" hidden>
+          <div class="card admin-card">
+            <div class="admin-card-head">
+              <h2 class="card-title">Serviços e preços</h2>
+              <button type="button" class="btn-ghost" id="servico-novo">+ Novo serviço</button>
+            </div>
+            <p class="admin-p">
+              A duração define de quanto em quanto tempo a agenda libera o próximo horário, somada à
+              folga entre atendimentos.
+            </p>
+            <ul class="admin-servicos" id="servicos"></ul>
+          </div>
+        </div>
+
+        <!-- Página: avisos -->
+        <div class="pagina" data-pagina="avisos" hidden>
+          <div class="card admin-card" id="cartao-push">
+            <h2 class="card-title">Avisos no celular</h2>
+            <p class="admin-p" id="push-estado"></p>
+            <div class="slot-acoes">
+              <button type="button" class="btn-ghost" id="push-ligar">Ativar avisos</button>
+              <button type="button" class="btn-ghost" id="push-desligar" hidden>Desativar</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Próximos atendimentos: acompanha as páginas de data -->
+        <div class="card admin-card" id="cartao-proximos">
+          <h2 class="card-title">Próximos atendimentos</h2>
+          <ul class="admin-proximos" id="proximos"></ul>
+        </div>
+      </section>
+    </main>
+
+    <script src="config.js"></script>
+    <script src="db.js"></script>
+    <script src="admin.js"></script>
+    <script>
+      // Registra o service worker (o que torna o painel instalável).
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("sw.js").catch(function (e) {
+            console.warn("Service worker não registrado:", e);
+          });
+        });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pink Studio — Agendamento Online</title>
+    <meta
+      name="description"
+      content="Agende seu horário no Pink Studio: brow lamination, design de sobrancelhas e design com henna. Beleza & bem estar em cada detalhe."
+    />
+    <meta name="theme-color" content="#fff7f6" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Pink Studio — Agendamento Online" />
+    <meta
+      property="og:description"
+      content="Agende seu horário no Pink Studio em poucos toques — confirmação pelo WhatsApp."
+    />
+    <meta property="og:image" content="assets/hero-brows.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500;600&display=swap"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <!-- Hero + formulário -->
+      <section class="hero">
+        <img class="hero-bg" src="assets/hero-brows.jpg" alt="" width="1920" height="1280" />
+        <div class="hero-veil"></div>
+
+        <div class="hero-head">
+          <img
+            id="logo"
+            class="logo"
+            src="assets/logo.jpg"
+            alt="Logotipo Pink Studio"
+            width="220"
+            height="220"
+            onerror="this.replaceWith(document.getElementById('logo-fallback').content.cloneNode(true))"
+          />
+          <template id="logo-fallback">
+            <div class="logo logo-mark" aria-label="Pink Studio"><span>PS</span></div>
+          </template>
+          <h1>Pink Studio</h1>
+          <p class="tagline">Beleza &amp; bem estar</p>
+          <p class="lede">Agende seu horário em poucos toques — confirmação pelo WhatsApp.</p>
+        </div>
+
+        <form class="card form-card" id="booking-form" novalidate>
+          <h2 class="card-title">Seu Agendamento</h2>
+
+          <div class="fields">
+            <label class="field">
+              <span class="field-label">Nome</span>
+              <input id="name" class="input" type="text" placeholder="Seu nome" autocomplete="name" />
+            </label>
+
+            <label class="field">
+              <span class="field-label">WhatsApp</span>
+              <input
+                id="phone"
+                class="input"
+                type="tel"
+                inputmode="tel"
+                placeholder="DDD + TELEFONE"
+                autocomplete="tel"
+              />
+            </label>
+
+            <label class="field">
+              <span class="field-label">Serviço</span>
+              <select id="service" class="input"></select>
+            </label>
+
+            <label class="field">
+              <span class="field-label">Data</span>
+              <input id="date" class="input" type="date" />
+              <span class="ajuda" id="janela-datas"></span>
+            </label>
+
+            <div class="field">
+              <span class="field-label">Selecione o horário</span>
+              <div class="times" id="times" role="group" aria-label="Horários disponíveis"></div>
+            </div>
+
+            <div id="guests"></div>
+
+            <button type="button" class="btn-dashed" id="add-guest">
+              + Adicionar acompanhante (amiga/filha)
+            </button>
+
+            <a id="submit" class="btn-primary btn-block" href="#" target="_blank" rel="noreferrer" aria-disabled="true">
+              Confirmar agendamento
+            </a>
+            <p class="hint" id="hint">Preencha nome, WhatsApp, serviço, data e horário para confirmar.</p>
+            <p class="nota">
+              Seu horário é reservado quando o Pink Studio responder a mensagem confirmando.
+            </p>
+          </div>
+        </form>
+      </section>
+
+      <!-- Tabela de preços -->
+      <section class="section">
+        <div class="wrap">
+          <h2 class="section-title">Tabela de Preços</h2>
+          <ul class="card price-list" id="price-list"></ul>
+        </div>
+      </section>
+
+      <footer class="footer">
+        Pink Studio · Beleza & bem estar em cada detalhe
+      </footer>
+    </main>
+
+    <a class="wa-float" id="wa-float" href="#" target="_blank" rel="noreferrer" aria-label="Falar no WhatsApp">
+      <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" fill="currentColor">
+        <path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.48-1.75-1.65-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.470 0 1.45 1.06 2.86 1.21 3.06.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.28.17-1.41-.07-.13-.27-.2-.57-.35z"/>
+        <path d="M12.04 2.4c-5.3 0-9.6 4.3-9.6 9.6 0 1.7.45 3.35 1.3 4.8L2.4 21.6l4.95-1.3a9.56 9.56 0 0 0 4.69 1.2h.01c5.3 0 9.6-4.3 9.6-9.6s-4.3-9.5-9.61-9.5zm0 17.5h-.01a7.94 7.94 0 0 1-4.05-1.11l-.29-.17-2.94.77.78-2.87-.19-.3a7.93 7.93 0 0 1-1.22-4.23c0-4.39 3.57-7.96 7.97-7.96 2.13 0 4.13.83 5.63 2.34a7.9 7.9 0 0 1 2.33 5.63c0 4.4-3.57 7.9-8.01 7.9z"/>
+      </svg>
+    </a>
+
+    <script src="config.js"></script>
+    <script src="db.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

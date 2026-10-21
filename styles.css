@@ -1,0 +1,506 @@
+/* Pink Studio — design system (convertido do projeto original) */
+
+:root {
+  --radius: 1rem;
+  --rose: oklch(0.86 0.055 12);
+  --rose-deep: oklch(0.52 0.13 8);
+  --gold: oklch(0.75 0.09 78);
+  --background: oklch(0.99 0.008 20);
+  --foreground: oklch(0.36 0.07 8);
+  --card: oklch(1 0 0);
+  --primary: oklch(0.52 0.13 8);
+  --primary-foreground: oklch(0.99 0.005 20);
+  --secondary: oklch(0.96 0.02 15);
+  --secondary-foreground: oklch(0.44 0.1 8);
+  --muted: oklch(0.96 0.015 15);
+  --muted-foreground: oklch(0.56 0.045 10);
+  --accent: oklch(0.93 0.04 12);
+  --border: oklch(0.92 0.025 14);
+  --input: oklch(0.92 0.025 14);
+  --ring: oklch(0.75 0.08 10);
+
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Jost", "Segoe UI", system-ui, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* ---------- hero ---------- */
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  padding: 3.5rem 1rem;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.hero-veil {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: color-mix(in oklab, var(--background) 70%, transparent);
+}
+
+.hero-head {
+  margin: 0 auto;
+  max-width: 36rem;
+  text-align: center;
+}
+
+.logo {
+  display: block;
+  margin: 0 auto;
+  width: 10rem;
+  height: 10rem;
+  object-fit: cover;
+  border-radius: 9999px;
+  box-shadow: 0 20px 50px -20px color-mix(in oklab, var(--rose-deep) 45%, transparent);
+}
+
+.logo-mark {
+  display: grid;
+  place-items: center;
+  background: linear-gradient(140deg, var(--rose), color-mix(in oklab, var(--gold) 60%, white));
+  color: var(--primary-foreground);
+  font-family: var(--font-display);
+  font-size: 3rem;
+  letter-spacing: 0.05em;
+}
+
+.hero-head h1 {
+  margin-top: 1.5rem;
+  font-size: 3rem;
+  color: var(--primary);
+}
+
+.tagline {
+  margin: 0.5rem 0 0;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.35em;
+  color: var(--secondary-foreground);
+}
+
+.lede {
+  margin: 1rem 0 0;
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+/* ---------- cards ---------- */
+
+.card {
+  background-color: color-mix(in oklab, var(--card) 92%, transparent);
+  border: 1px solid color-mix(in oklab, var(--rose) 55%, transparent);
+  box-shadow: 0 24px 60px -30px color-mix(in oklab, var(--rose-deep) 35%, transparent);
+  backdrop-filter: blur(10px);
+  border-radius: calc(var(--radius) + 12px);
+}
+
+.form-card {
+  margin: 2.5rem auto 0;
+  max-width: 36rem;
+  padding: 1.5rem;
+}
+
+.card-title {
+  border-left: 2px solid var(--primary);
+  padding-left: 0.75rem;
+  font-size: 1.5rem;
+  color: var(--primary);
+}
+
+.fields {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.field {
+  display: block;
+}
+
+.field-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--secondary-foreground);
+}
+
+.input {
+  width: 100%;
+  border-radius: var(--radius);
+  border: 1px solid var(--input);
+  background-color: color-mix(in oklab, var(--card) 85%, transparent);
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+  font-family: inherit;
+  color: var(--foreground);
+}
+
+.input::placeholder {
+  color: var(--muted-foreground);
+}
+
+.input:focus {
+  outline: 2px solid color-mix(in oklab, var(--ring) 70%, transparent);
+  outline-offset: 1px;
+}
+
+select.input {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--muted-foreground) 50%),
+    linear-gradient(135deg, var(--muted-foreground) 50%, transparent 50%);
+  background-position: calc(100% - 20px) 55%, calc(100% - 14px) 55%;
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+  padding-right: 2.5rem;
+}
+
+/* ---------- horários ---------- */
+
+.times {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.sem-horario {
+  grid-column: 1 / -1;
+  margin: 0;
+  border: 1px dashed var(--border);
+  border-radius: calc(var(--radius) - 4px);
+  padding: 0.9rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--muted-foreground);
+}
+
+.time {
+  border-radius: calc(var(--radius) - 4px);
+  border: 1px solid var(--border);
+  background-color: var(--card);
+  color: var(--foreground);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.time:hover {
+  background-color: var(--accent);
+}
+
+.time.is-taken,
+.time:disabled {
+  border-style: dashed;
+  background-color: transparent;
+  color: var(--muted-foreground);
+  text-decoration: line-through;
+  cursor: not-allowed;
+}
+
+.time.is-taken:hover {
+  background-color: transparent;
+}
+
+.times.is-loading {
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.time.is-active {
+  border-color: var(--primary);
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+/* ---------- acompanhantes ---------- */
+
+.guest {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-radius: calc(var(--radius) + 4px);
+  border: 1px solid var(--border);
+  background-color: color-mix(in oklab, var(--secondary) 60%, transparent);
+  padding: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.guest-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.guest-title {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--secondary-foreground);
+}
+
+.guest-remove {
+  border: 0;
+  background: none;
+  padding: 0;
+  font-family: inherit;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted-foreground);
+  cursor: pointer;
+}
+
+.guest-remove:hover {
+  color: var(--primary);
+}
+
+/* ---------- botões ---------- */
+
+.btn-dashed {
+  width: 100%;
+  border-radius: calc(var(--radius) - 4px);
+  border: 1px dashed color-mix(in oklab, var(--primary) 50%, transparent);
+  background: none;
+  padding: 0.75rem 1rem;
+  font-family: inherit;
+  font-size: 0.875rem;
+  color: var(--primary);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.btn-dashed:hover {
+  background-color: var(--accent);
+}
+
+.btn-primary {
+  display: inline-block;
+  border-radius: calc(var(--radius) - 4px);
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  padding: 0.85rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  text-align: center;
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-block {
+  display: block;
+  padding: 1rem;
+}
+
+.btn-primary.is-disabled {
+  background-color: var(--muted);
+  color: var(--muted-foreground);
+  cursor: not-allowed;
+}
+
+.ajuda {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.7rem;
+  color: var(--muted-foreground);
+}
+
+.hint {
+  margin: -0.5rem 0 0;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+}
+
+.nota {
+  margin: -0.75rem 0 0;
+  text-align: center;
+  font-size: 0.7rem;
+  line-height: 1.5;
+  color: var(--muted-foreground);
+}
+
+.shake {
+  animation: shake 0.4s ease;
+}
+
+@keyframes shake {
+  25% {
+    transform: translateX(-4px);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+  75% {
+    transform: translateX(-2px);
+  }
+}
+
+/* ---------- seções ---------- */
+
+.section {
+  padding: 4rem 1rem;
+}
+
+.wrap {
+  margin: 0 auto;
+  max-width: 36rem;
+}
+
+.section-title {
+  font-size: 1.875rem;
+  text-align: center;
+  color: var(--primary);
+}
+
+.price-list {
+  margin: 2rem auto 0;
+  max-width: 36rem;
+  list-style: none;
+  padding: 0 1.5rem;
+}
+
+.price-list li {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+  font-size: 0.875rem;
+}
+
+.price-nome {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.price-titulo {
+  font-weight: 500;
+}
+
+.price-desc {
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+}
+
+.price-valores {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.1rem;
+  white-space: nowrap;
+}
+
+.price-antigo {
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+  text-decoration: line-through;
+}
+
+.price-list li + li {
+  border-top: 1px solid var(--border);
+}
+
+.price {
+  font-weight: 500;
+  color: var(--primary);
+}
+
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 2rem 1rem;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+}
+
+/* ---------- botão flutuante do WhatsApp ---------- */
+
+.wa-float {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 9999px;
+  background-color: #25d366;
+  color: #fff;
+  box-shadow: 0 10px 25px -8px rgb(0 0 0 / 0.4);
+  transition: transform 0.15s ease;
+}
+
+.wa-float:hover {
+  transform: scale(1.06);
+}
+
+/* ---------- telas maiores ---------- */
+
+@media (min-width: 640px) {
+  .hero-head h1 {
+    font-size: 3.75rem;
+  }
+  .logo {
+    width: 13rem;
+    height: 13rem;
+  }
+  .form-card {
+    padding: 2rem;
+  }
+  .times {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

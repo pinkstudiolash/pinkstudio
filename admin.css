@@ -1,0 +1,692 @@
+/* Painel da agenda — complementa styles.css */
+
+/* Um elemento com o atributo hidden fica escondido, mesmo que alguma classe
+   abaixo defina display. Sem isto, .pagina { display: flex } venceria o
+   hidden e duas páginas apareceriam ao mesmo tempo. */
+[hidden] {
+  display: none !important;
+}
+
+.admin-body {
+  background-color: var(--background);
+  min-height: 100vh;
+}
+
+.admin-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-bottom: 1px solid var(--border);
+  background-color: color-mix(in oklab, var(--card) 80%, transparent);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(8px);
+}
+
+.admin-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.admin-brand strong {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.admin-brand img {
+  border-radius: 9999px;
+  object-fit: cover;
+}
+
+.admin-brand strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.admin-brand span {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+}
+
+.admin-main {
+  margin: 0 auto;
+  max-width: 40rem;
+  padding: 1.5rem 1rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.admin-card {
+  padding: 1.5rem;
+}
+
+.admin-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.admin-nav-dia {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.admin-dia {
+  width: auto;
+  padding: 0.5rem 0.75rem;
+}
+
+.admin-p {
+  margin: 1rem 0 0;
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+.admin-erro {
+  margin: 0;
+  font-size: 0.8rem;
+  color: oklch(0.55 0.2 27);
+}
+
+.btn-ghost {
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) - 6px);
+  background-color: transparent;
+  color: var(--foreground);
+  padding: 0.4rem 0.75rem;
+  font-family: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.btn-whats {
+  border-color: color-mix(in oklab, #25d366 55%, transparent);
+  color: #128c3e;
+  text-decoration: none;
+}
+
+.btn-whats:hover {
+  background-color: color-mix(in oklab, #25d366 14%, transparent);
+}
+
+.btn-ghost:hover {
+  background-color: var(--accent);
+}
+
+/* ---------- lista de horários do dia ---------- */
+
+.admin-slots,
+.admin-proximos {
+  list-style: none;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.slot {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) - 2px);
+  padding: 0.75rem;
+}
+
+.slot-hora {
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+  color: var(--primary);
+  min-width: 3.2rem;
+}
+
+.slot-corpo {
+  flex: 1;
+  min-width: 0;
+}
+
+.slot-nome {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.slot-detalhe {
+  margin: 0.15rem 0 0;
+  font-size: 0.8rem;
+  color: var(--muted-foreground);
+  word-break: break-word;
+}
+
+.slot-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.6rem;
+}
+
+.slot-livre {
+  border-style: dashed;
+  opacity: 0.75;
+}
+
+.slot-livre .slot-nome {
+  color: var(--muted-foreground);
+  font-weight: 400;
+}
+
+.slot-pendente {
+  border-color: color-mix(in oklab, var(--gold) 65%, transparent);
+  background-color: color-mix(in oklab, var(--gold) 12%, transparent);
+}
+
+.pedido + .pedido {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--border);
+}
+
+.slot-aviso {
+  margin: 0.5rem 0 0.6rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--secondary-foreground);
+}
+
+.slot-bloqueio {
+  background-color: color-mix(in oklab, var(--muted) 60%, transparent);
+}
+
+.slot-agendado {
+  border-color: color-mix(in oklab, var(--rose) 70%, transparent);
+  background-color: color-mix(in oklab, var(--secondary) 45%, transparent);
+}
+
+.etiqueta {
+  display: inline-block;
+  border-radius: 9999px;
+  padding: 0.1rem 0.5rem;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  vertical-align: middle;
+  margin-left: 0.4rem;
+}
+
+.etiqueta-pendente {
+  background-color: color-mix(in oklab, var(--gold) 35%, transparent);
+  color: var(--foreground);
+}
+
+.etiqueta-confirmado {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.admin-proximos li {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.75rem;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.admin-proximos .slot-acoes {
+  margin-top: 0.5rem;
+}
+
+.admin-proximos li:last-child {
+  border-bottom: 0;
+}
+
+.admin-proximos .quando {
+  font-weight: 500;
+  color: var(--primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.carregando {
+  font-size: 0.85rem;
+  color: var(--muted-foreground);
+}
+
+/* ---------- serviços e preços ---------- */
+
+.admin-servicos {
+  list-style: none;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.servico {
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) - 2px);
+  overflow: hidden;
+}
+
+.servico-inativo {
+  opacity: 0.7;
+  border-style: dashed;
+}
+
+.servico-cabeca {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  cursor: pointer;
+}
+
+.servico-cabeca:hover {
+  background-color: var(--accent);
+}
+
+.servico-nome {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.servico-resumo {
+  font-size: 0.8rem;
+  color: var(--muted-foreground);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.servico-form {
+  display: none;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0 0.75rem 0.75rem;
+  border-top: 1px solid var(--border);
+}
+
+.servico.aberto .servico-form {
+  display: flex;
+  padding-top: 0.75rem;
+}
+
+.servico-campo {
+  display: block;
+}
+
+.servico-rotulo {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: 0.75rem;
+  color: var(--secondary-foreground);
+}
+
+.servico-form .input {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.85rem;
+}
+
+.servico-novo {
+  border-color: color-mix(in oklab, var(--primary) 55%, transparent);
+  background-color: color-mix(in oklab, var(--secondary) 40%, transparent);
+}
+
+.campo-caixa {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.campo-caixa input[type="checkbox"] {
+  width: 1.05rem;
+  height: 1.05rem;
+  accent-color: var(--primary);
+}
+
+.servico-rotulo-lado {
+  font-size: 0.85rem;
+  color: var(--secondary-foreground);
+}
+
+/* ---------- menu lateral ---------- */
+
+.hamburguer {
+  display: grid;
+  gap: 4px;
+  padding: 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) - 6px);
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.hamburguer:hover {
+  background-color: var(--accent);
+}
+
+.hamburguer span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  border-radius: 2px;
+  background-color: var(--primary);
+}
+
+.sino {
+  position: relative;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font-size: 1.35rem;
+  line-height: 1;
+  padding: 0.25rem;
+}
+
+.sino::before {
+  content: "🔔";
+}
+
+.sino span {
+  position: absolute;
+  top: -2px;
+  right: -4px;
+  min-width: 1.15rem;
+  padding: 0 0.25rem;
+  border-radius: 9999px;
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 500;
+  line-height: 1.15rem;
+  text-align: center;
+}
+
+.menu-fundo {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background-color: oklch(0.2 0.05 10 / 0.35);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.menu-fundo.aberto {
+  opacity: 1;
+}
+
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 41;
+  width: min(19rem, 84vw);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.25rem 1rem;
+  background-color: var(--card);
+  border-right: 1px solid var(--border);
+  box-shadow: 0 0 40px -12px color-mix(in oklab, var(--rose-deep) 45%, transparent);
+  transform: translateX(-102%);
+  transition: transform 0.22s ease;
+}
+
+.menu.aberto {
+  transform: translateX(0);
+}
+
+.menu-cabeca {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.menu-cabeca img {
+  border-radius: 9999px;
+  object-fit: cover;
+}
+
+.menu-cabeca strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: var(--primary);
+}
+
+.menu-cabeca span {
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+}
+
+.menu-lista {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+}
+
+.menu-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.8rem 0.75rem;
+  border: 0;
+  border-radius: calc(var(--radius) - 4px);
+  background: none;
+  font-family: inherit;
+  font-size: 0.92rem;
+  color: var(--foreground);
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.menu-item:hover {
+  background-color: var(--accent);
+}
+
+.menu-item.atual {
+  background-color: color-mix(in oklab, var(--primary) 12%, transparent);
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.menu-icone {
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.menu-texto {
+  flex: 1;
+}
+
+.menu-badge {
+  min-width: 1.35rem;
+  padding: 0.1rem 0.35rem;
+  border-radius: 9999px;
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  font-size: 0.7rem;
+  text-align: center;
+}
+
+.menu-sair {
+  margin-top: auto;
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) - 4px);
+  background: none;
+  padding: 0.7rem;
+  font-family: inherit;
+  font-size: 0.85rem;
+  color: var(--muted-foreground);
+  cursor: pointer;
+}
+
+.menu-sair:hover {
+  background-color: var(--accent);
+  color: var(--primary);
+}
+
+/* ---------- calendário do mês ---------- */
+
+.cal-semana {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.3rem;
+  margin-top: 1.25rem;
+  text-align: center;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted-foreground);
+}
+
+.cal-grade {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.3rem;
+  margin-top: 0.4rem;
+}
+
+.cal-vazio {
+  aspect-ratio: 1 / 1;
+}
+
+.cal-dia {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) - 6px);
+  background-color: var(--card);
+  font-family: inherit;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    transform 0.1s ease;
+}
+
+.cal-dia:hover {
+  background-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.cal-numero {
+  font-size: 0.9rem;
+  color: var(--foreground);
+}
+
+.cal-hoje {
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 1px var(--primary);
+}
+
+.cal-hoje .cal-numero {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.cal-fechado {
+  background-color: color-mix(in oklab, var(--muted) 55%, transparent);
+  border-style: dashed;
+}
+
+.cal-fechado .cal-numero {
+  color: var(--muted-foreground);
+}
+
+.cal-tem-pendente {
+  border-color: color-mix(in oklab, var(--gold) 70%, transparent);
+  background-color: color-mix(in oklab, var(--gold) 14%, transparent);
+}
+
+.cal-pontos {
+  display: flex;
+  gap: 2px;
+  min-height: 6px;
+}
+
+.ponto {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+}
+
+.ponto-confirmado {
+  background-color: var(--primary);
+}
+
+.ponto-pendente {
+  background-color: color-mix(in oklab, var(--gold) 85%, black 10%);
+}
+
+.ponto-fechado {
+  background-color: var(--muted-foreground);
+  opacity: 0.5;
+}
+
+.cal-aviso {
+  position: absolute;
+  top: 2px;
+  right: 3px;
+  min-width: 0.95rem;
+  padding: 0 0.2rem;
+  border-radius: 9999px;
+  background-color: color-mix(in oklab, var(--gold) 85%, black 12%);
+  color: var(--card);
+  font-size: 0.6rem;
+  line-height: 0.95rem;
+  text-align: center;
+}
+
+.cal-legenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: 1rem;
+  font-size: 0.72rem;
+  color: var(--muted-foreground);
+}
+
+.cal-legenda span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.pagina {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
